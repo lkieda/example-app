@@ -1,0 +1,12 @@
+default: &default
+  host: <%= ENV['REDIS_HOST'] || '127.0.0.1' %>
+  port: 6379
+  databases:
+    sidekiq: 0
+    configuration_store: 1
+
+development:
+  <<: *default
+
+test:
+  <<: *default

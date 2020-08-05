@@ -16,6 +16,7 @@ APP_LOADER.enable_reloading
 
 %w[
   lib
+  app/connection
   app/consumers
   app/responders
   app/workers
