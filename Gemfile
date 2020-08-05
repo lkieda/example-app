@@ -2,13 +2,13 @@
 
 source 'https://rubygems.org'
 
-plugin 'diffend'
-
 # ActiveSupport is only used to parse XML
 gem 'activesupport'
 
 gem 'karafka'
 gem 'karafka-sidekiq-backend'
+gem 'redis'
+gem 'rubocop'
 
 group :development, :test do
   gem 'byebug'
