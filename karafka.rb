@@ -18,7 +18,9 @@ APP_LOADER.enable_reloading
   lib
   app/connection
   app/consumers
+  app/errors
   app/responders
+  app/services
   app/workers
 ].each(&APP_LOADER.method(:push_dir))
 
