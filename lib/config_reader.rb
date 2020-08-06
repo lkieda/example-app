@@ -9,7 +9,7 @@ class ConfigReader
     private
 
     def load_yaml(file_name)
-      YAML.load(
+      YAML.safe_load(
         ERB.new(
           File.read(
             File.join(Karafka::App.root, 'config', file_name)

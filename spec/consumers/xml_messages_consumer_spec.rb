@@ -12,8 +12,8 @@ RSpec.describe XmlMessagesConsumer do
   end
 
   it 'expects to log a proper message' do
-    expect(Karafka.logger).to receive(:info).with("Consumed following message: #{params}")
     consumer.consume
+    expect(Karafka.logger).to have_received(:info).with("Consumed following message: #{params}")
   end
 
   it 'expects to unparse message' do

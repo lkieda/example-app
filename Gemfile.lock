@@ -128,6 +128,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (0.3.0)
       parser (>= 2.7.1.4)
+    rubocop-rspec (1.42.0)
+      rubocop (>= 0.87.0)
     ruby-kafka (1.2.0)
       digest-crc
     ruby-progressbar (1.10.1)
@@ -165,6 +167,7 @@ DEPENDENCIES
   redis
   rspec
   rubocop
+  rubocop-rspec
   simplecov
 
 BUNDLED WITH

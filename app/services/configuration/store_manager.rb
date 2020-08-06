@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Configuration
   class StoreManager
     def initialize(connection: RedisConnection.configuration_store, logger: Karafka.logger)
@@ -10,7 +12,7 @@ module Configuration
 
       return {} unless start_times.present?
 
-      configurations = connection.mget(start_times).map{|config| JSON.parse(config)}
+      configurations = connection.mget(start_times).map { |config| JSON.parse(config) }
 
       Hash[start_times.zip(configurations)]
     end

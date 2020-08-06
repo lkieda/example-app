@@ -13,12 +13,10 @@ module Handlers
 
       counter = params_batch.last.payload['counter'] + 1
 
-      output = {'counter' => counter}
-      output.merge!({'mood' => ":)"}) if config['include_mood']
+      output = { 'counter' => counter }
+      output.merge!({ 'mood' => ':)' }) if config['include_mood']
 
-      if config['delay'].present?
-        sleep config['delay']
-      end
+      sleep config['delay'] if config['delay'].present?
 
       output
     end

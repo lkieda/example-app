@@ -9,6 +9,7 @@ gem 'karafka'
 gem 'karafka-sidekiq-backend'
 gem 'redis'
 gem 'rubocop'
+gem 'rubocop-rspec'
 
 group :development, :test do
   gem 'byebug'

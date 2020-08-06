@@ -8,7 +8,7 @@ namespace :configuration do
 
   desc 'Updates the store with new configuration'
   task :update do
-    configuration = {include_mood: true, delay: 5}
+    configuration = { include_mood: true, delay: 5 }
     Configuration::StoreManager.new.set_configuration(configuration, propagation_buffer: 5.seconds)
   end
 

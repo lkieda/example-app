@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Configuration
   class Provider
-
     def initialize(store_manager: Configuration::StoreManager.new, selector: Configuration::Selector.new)
       @store_manager = store_manager
       @selector = selector
@@ -13,7 +14,6 @@ module Configuration
 
       selector.select(configuration_by_time)
     end
-
 
     private
 

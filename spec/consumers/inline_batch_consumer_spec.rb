@@ -14,7 +14,7 @@ RSpec.describe InlineBatchConsumer do
   end
 
   it 'expects to log a proper message' do
-    expect(Karafka.logger).to receive(:info).with("Sum of 2 elements equals to: #{sum}")
     consumer.consume
+    expect(Karafka.logger).to have_received(:info).with("Sum of 2 elements equals to: #{sum}")
   end
 end
