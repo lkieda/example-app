@@ -21,4 +21,16 @@ namespace :waterdrop do
     message = { rand => rand }.to_json
     WaterDrop::SyncProducer.call(message, topic: 'callbacked_data')
   end
+
+  namespace :send do
+    desc 'Sends the initial ping to start ping-pong within Karafka (specify how many w/ COUNT=n)'
+    task :ping do
+      count = ENV["COUNT"] ? ENV["COUNT"].to_i : 1
+
+      count.times do
+        message = { 'counter' => 0 }.to_json
+        WaterDrop::SyncProducer.call(message, topic: 'ping')
+      end
+    end
+  end
 end
