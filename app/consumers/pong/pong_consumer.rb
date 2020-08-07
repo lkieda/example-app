@@ -5,10 +5,9 @@ module Pong
   class PongConsumer < ApplicationConsumer
     # Increase counter and respond
     def consume
-      # Just a small delay so we won't overuse the CPU
-      sleep rand
-      counter = params_batch.last.payload['counter'] + 1
-      respond_with('counter' => counter)
+      data = Handlers::PongHandler.new.handle(params_batch)
+
+      respond_with(data)
     end
   end
 end

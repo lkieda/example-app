@@ -6,9 +6,10 @@ module Pong
   class PingConsumer < ApplicationConsumer
     # We increase the pings counter and respond
     def consume
-      counter = params_batch.last.payload['counter'] + 1
       # The initial ping needs to be triggered via the rake task
-      respond_with(counter: counter)
+      data = Handlers::PongHandler.new.handle(params_batch)
+
+      respond_with(data)
     end
   end
 end
