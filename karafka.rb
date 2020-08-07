@@ -115,3 +115,11 @@ if Karafka::App.env.development?
 end
 
 App.boot!
+
+Sidekiq.configure_server do |config|
+  config.redis = { url: RedisConnection.sidekiq_redis_url }
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = { url: RedisConnection.sidekiq_redis_url }
+end

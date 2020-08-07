@@ -1,6 +1,35 @@
 version: '3'
 
 services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle exec karafka worker"
+    environment:
+      - REDIS_HOST=redis
+      - KAFKA_HOST=kafka://kafka:9092
+
+    depends_on:
+      - redis
+    volumes:
+      - .:/code
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle exec karafka server"
+    environment:
+      - REDIS_HOST=redis
+      - KAFKA_HOST=kafka://kafka:9092
+
+    depends_on:
+      - redis
+      - kafka
+    volumes:
+      - .:/code
+
   kafka:
     image: wurstmeister/kafka:2.12-2.5.0
     ports:
@@ -8,7 +37,7 @@ services:
     depends_on:
       - zookeeper
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ADVERTISED_HOST_NAME: kafka
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
 
   zookeeper:
