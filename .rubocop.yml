@@ -8,3 +8,7 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
     - karafka.rb
+
+Security/YAMLLoad:
+  Exclude:
+    - lib/config_reader.rb
