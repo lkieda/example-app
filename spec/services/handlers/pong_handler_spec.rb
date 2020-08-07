@@ -4,7 +4,8 @@ RSpec.describe Handlers::PongHandler do
   subject(:handle) { ping_handler.handle(params_batch) }
 
   let(:config_provider) { instance_double(Configuration::Provider) }
-  let(:ping_handler) { described_class.new(config_provider: config_provider) }
+  let(:logger) { spy }
+  let(:ping_handler) { described_class.new(config_provider: config_provider, logger: logger) }
   let(:mock_params) { Struct.new(:payload) }
   let(:params_batch) { [mock_params.new('counter' => 0)] }
 
@@ -21,6 +22,12 @@ RSpec.describe Handlers::PongHandler do
 
     it 'increments counter' do
       expect(handle).to eq({ 'counter' => 1 })
+    end
+
+    it 'outputs config to the logs' do
+      handle
+
+      expect(logger).to have_received(:info).with("PongHandler using configuration: {}")
     end
   end
 

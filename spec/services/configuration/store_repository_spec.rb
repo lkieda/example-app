@@ -3,7 +3,6 @@
 RSpec.describe Configuration::StoreRepository do
   let(:connection) { instance_spy(Redis) }
   let(:logger) { spy }
-
   let(:store_manager) { described_class.new(connection: connection, logger: logger) }
 
   describe '#configuration_by_start_time' do
