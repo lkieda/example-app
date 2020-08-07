@@ -2,7 +2,7 @@
 
 module Configuration
   class Selector
-    def initialize(time_format: StoreManager::Constants::TIME_FORMAT)
+    def initialize(time_format: Configuration::Constants::TIME_FORMAT)
       @time_format = time_format
     end
 
