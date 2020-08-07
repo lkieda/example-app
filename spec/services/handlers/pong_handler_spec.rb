@@ -27,7 +27,7 @@ RSpec.describe Handlers::PongHandler do
     it 'outputs config to the logs' do
       handle
 
-      expect(logger).to have_received(:info).with("PongHandler using configuration: {}")
+      expect(logger).to have_received(:info).with('PongHandler using configuration: {}')
     end
   end
 

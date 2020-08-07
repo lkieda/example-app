@@ -14,6 +14,12 @@ module Handlers
 
       logger.info "PongHandler using configuration: #{config.inspect}"
 
+      handle_using_config(params_batch, config)
+    end
+
+    private
+
+    def handle_using_config(params_batch, config)
       counter = params_batch.last.payload['counter'] + 1
 
       output = { 'counter' => counter }
@@ -23,8 +29,6 @@ module Handlers
 
       output
     end
-
-    private
 
     attr_accessor :config_provider, :logger
   end

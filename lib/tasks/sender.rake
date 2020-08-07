@@ -25,7 +25,7 @@ namespace :waterdrop do
   namespace :send do
     desc 'Sends the initial ping to start ping-pong within Karafka (specify how many w/ COUNT=n)'
     task :ping do
-      count = ENV["COUNT"] ? ENV["COUNT"].to_i : 1
+      count = ENV['COUNT'] ? ENV['COUNT'].to_i : 1
 
       count.times do
         message = { 'counter' => 0 }.to_json

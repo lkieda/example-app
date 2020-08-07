@@ -110,11 +110,11 @@ order and require sorting for easier understanding.
 
 ## Things I'd like to change/try given more time
 
-### Different Configuration store and caching 
+### Different configuration store and caching 
 I would use something else than Redis as the configuration store. :) I used Redis mostly because of ease of prototyping a 
 solution. In production use I would start with something like Postgres and depending on performance take it further from 
 there. Depending on the maximum time we can accept between setting new configuration and seeing it take effect I would 
-define process side caching with appropriate TTL. To limit database calls even further I would then insert cache 
+define process side caching with appropriate TTL. To limit database calls even further I would then insert Redis 
 between the processes and Postgres. 
 
 ### Experiment with Zookeeper
@@ -122,13 +122,10 @@ between the processes and Postgres.
 According to [Apache ZooKeeper website](https://zookeeper.apache.org):
 
 > ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services. 
-My preferred approach would be to use push rather than pull to avoid unnecessary strain on the configuration store and 
-also to ensure minimal delay between setting the configuration and propagating it through the system. Zookeeper seems
-like a good candidate for this. Unfortunately, it looks like client libraries for Ruby are very old. 
 
 Which sounds exactly like what I would need to ensure state synchronization between processes across a large system. 
-One of my favorite features is the ability to use push rather than pull. Also, I'd like to use it as a coordinator
-for two phase commit to ensure consistency.
+One of my favorite features is the ability to use push rather than pull. Also, it would be interesting to use Zookeeper 
+as a coordinator for two phase commit.
 
 Sadly, I have no experience with Zookeper and it looks like Zookeper libraries for Ruby are very old.
 
