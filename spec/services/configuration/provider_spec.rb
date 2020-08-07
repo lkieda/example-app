@@ -3,7 +3,7 @@
 RSpec.describe Configuration::Provider do
   subject { provider.provide }
 
-  let(:store_manager) { instance_double(Configuration::StoreManager) }
+  let(:store_manager) { instance_double(Configuration::StoreRepository) }
   let(:provider) do
     described_class.new(store_manager: store_manager, selector: selector)
   end

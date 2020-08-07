@@ -2,7 +2,7 @@
 
 module Configuration
   class Provider
-    def initialize(store_manager: Configuration::StoreManager.new, selector: Configuration::Selector.new)
+    def initialize(store_manager: Configuration::StoreRepository.new, selector: Configuration::Selector.new)
       @store_manager = store_manager
       @selector = selector
     end

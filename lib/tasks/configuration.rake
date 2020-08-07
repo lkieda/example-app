@@ -3,13 +3,13 @@
 namespace :configuration do
   desc 'Saves default configuration to the store'
   task :default do
-    Configuration::StoreManager.new.set_configuration(Configuration::Constants::DEFAULT_CONFIGURATION)
+    Configuration::StoreRepository.new.set_configuration(Configuration::Constants::DEFAULT_CONFIGURATION)
   end
 
   desc 'Updates the store with new configuration'
   task :update do
     configuration = { include_mood: true, delay: 5 }
-    Configuration::StoreManager.new.set_configuration(configuration, propagation_buffer: 5.seconds)
+    Configuration::StoreRepository.new.set_configuration(configuration, propagation_buffer: 5.seconds)
   end
 
   desc 'Removes everything from configuration store'

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Configuration::StoreManager do
+RSpec.describe Configuration::StoreRepository do
   let(:connection) { instance_spy(Redis) }
   let(:logger) { spy }
 

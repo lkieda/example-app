@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Configuration
-  class StoreManager
+  class StoreRepository
     def initialize(connection: RedisConnection.configuration_store, logger: Karafka.logger)
       @logger = logger
       @connection = connection
