@@ -2,13 +2,13 @@
 
 module Configuration
   class Provider
-    def initialize(store_manager: Configuration::StoreRepository.new, selector: Configuration::Selector.new)
-      @store_manager = store_manager
+    def initialize(store_repository: Configuration::StoreRepository.new, selector: Configuration::Selector.new)
+      @store_repository = store_repository
       @selector = selector
     end
 
     def provide
-      configuration_by_time = store_manager.configuration_by_start_time
+      configuration_by_time = store_repository.configuration_by_start_time
 
       return nil unless configuration_by_time.present?
 
@@ -17,6 +17,6 @@ module Configuration
 
     private
 
-    attr_accessor :config, :store_manager, :selector
+    attr_accessor :config, :store_repository, :selector
   end
 end

@@ -3,10 +3,10 @@
 RSpec.describe Configuration::StoreRepository do
   let(:connection) { instance_spy(Redis) }
   let(:logger) { spy }
-  let(:store_manager) { described_class.new(connection: connection, logger: logger) }
+  let(:store_repository) { described_class.new(connection: connection, logger: logger) }
 
   describe '#configuration_by_start_time' do
-    subject { store_manager.configuration_by_start_time }
+    subject { store_repository.configuration_by_start_time }
 
     context 'when no keys are present' do
       before { allow(connection).to receive(:keys).and_return([]) }
@@ -40,7 +40,7 @@ RSpec.describe Configuration::StoreRepository do
 
   describe '#set_configuration' do
     subject(:set_configuration) do
-      store_manager.set_configuration(configuration, time_now: time_now, propagation_buffer: propagation_buffer)
+      store_repository.set_configuration(configuration, time_now: time_now, propagation_buffer: propagation_buffer)
     end
 
     let(:configuration) { { key: 'value' } }
@@ -61,7 +61,7 @@ RSpec.describe Configuration::StoreRepository do
   end
 
   describe '#remove_all_configuration' do
-    subject(:remove_all_configuration) { store_manager.remove_all_configuration }
+    subject(:remove_all_configuration) { store_repository.remove_all_configuration }
 
     it do
       remove_all_configuration

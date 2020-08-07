@@ -3,16 +3,16 @@
 RSpec.describe Configuration::Provider do
   subject { provider.provide }
 
-  let(:store_manager) { instance_double(Configuration::StoreRepository) }
+  let(:store_repository) { instance_double(Configuration::StoreRepository) }
   let(:provider) do
-    described_class.new(store_manager: store_manager, selector: selector)
+    described_class.new(store_repository: store_repository, selector: selector)
   end
   let(:selector) { instance_double(Configuration::Selector) }
   let(:time) { Time.parse('2020-08-03 12:00:00 UTC') }
   let(:configuration) { { config: 'something' } }
 
   before do
-    allow(store_manager).to receive(:configuration_by_start_time) { configuration_by_start_time }
+    allow(store_repository).to receive(:configuration_by_start_time) { configuration_by_start_time }
   end
 
   context 'when no configuration fetched' do
